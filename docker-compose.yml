@@ -1,0 +1,41 @@
+services:
+  controlfina-api:
+    container_name: controlfina-api
+    image: controlfina-api
+    build:
+      context: .
+      dockerfile: ./ControlFina.Api/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTPS_PORTS=8081
+    ports:
+      - "8880:8080"
+      - "8881:8081"
+    networks:
+      - apinet
+    restart: always
+    depends_on:
+      - db
+
+  db:
+    container_name: controlfina-db
+    image: postgres:latest
+    ports:
+      - "54322:5432"
+    restart: always
+    environment:
+      POSTGRES_USER: "controlfina_usr"
+      POSTGRES_PASSWORD: "senha123"
+      POSTGRES_DB: "controlfina_db"
+    volumes:
+      - db-postgres:/var/lib/postgresql/data
+    networks:
+      - apinet
+
+volumes:
+  db-postgres:
+
+networks:
+  apinet:
+    driver: bridge 
