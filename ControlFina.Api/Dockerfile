@@ -12,19 +12,21 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["ControlFinaApi.csproj", "."]
-RUN dotnet restore "./ControlFinaApi.csproj"
+COPY ["ControlFina.Api/ControlFina.Api.csproj", "ControlFina.Api/"]
+COPY ["ControlFina.Core/ControlFina.Core.csproj", "ControlFina.Core/"]
+COPY ["ControlFina.Infrastructure/ControlFina.Infrastructure.csproj", "ControlFina.Infrastructure/"]
+RUN dotnet restore "./ControlFina.Api/ControlFina.Api.csproj"
 COPY . .
-WORKDIR "/src/."
-RUN dotnet build "./ControlFinaApi.csproj" -c $BUILD_CONFIGURATION -o /app/build
+WORKDIR "/src/ControlFina.Api"
+RUN dotnet build "./ControlFina.Api.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 # Esta fase é usada para publicar o projeto de serviço a ser copiado para a fase final
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./ControlFinaApi.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./ControlFina.Api.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 # Esta fase é usada na produção ou quando executada no VS no modo normal (padrão quando não está usando a configuração de Depuração)
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "ControlFinaApi.dll"]
+ENTRYPOINT ["dotnet", "ControlFina.Api.dll"]
