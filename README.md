@@ -22,6 +22,9 @@ Uma API RESTful para gerenciar finanças pessoais, desenvolvida com foco em boas
 - **Injeção de Dependência (Dependency Injection)**
 - **Principais princípios SOLID**
 
+## Imagem Arquitetura da API
+![diagrama_arquitetura](https://github.com/user-attachments/assets/209a3727-ffbd-4caf-9fe6-cf6572076317)
+
 ## Para executar 
 - **Deve ter o docker instalado**
 - **Na pasta raiz execute o comando:** docker-compose up --build -d
