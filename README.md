@@ -26,5 +26,7 @@ Uma API RESTful para gerenciar finanças pessoais, desenvolvida com foco em boas
 - **Deve ter o docker instalado**
 - **Na pasta raiz execute o comando:** docker-compose up --build -d
 
-## Caso tenha o Visual Studios
-- **Basta abrir a solução.**
+### Caso tenha o Visual Studios
+- **Basta abrir a solução.
+
+A API estará disponível em: https://localhost:8881/swagger/index.html
