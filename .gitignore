@@ -405,3 +405,5 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 diagrama_arquitetura.png
+diagrama_arquitetura_v2-1.png
+diagrama_arquitetura_v2.png
