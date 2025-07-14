@@ -23,7 +23,7 @@ Uma API RESTful para gerenciar finanças pessoais, desenvolvida com foco em boas
 - **Principais princípios SOLID**
 
 ## Imagem Arquitetura da API
-![diagrama_arquitetura](https://github.com/user-attachments/assets/209a3727-ffbd-4caf-9fe6-cf6572076317)
+![diagrama_arquitetura](https://github.com/user-attachments/assets/9587b5b5-8548-491a-8398-68f629e4cf9e)
 
 ## Para executar 
 - **Deve ter o docker instalado**
