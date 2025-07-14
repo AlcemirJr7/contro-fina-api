@@ -2,4 +2,4 @@
 
 namespace ControlFina.Core.Features.Transactions.Contracts.Update;
 
-public interface IUpdateTransactionCommandHandler : ICommandHandler<UpdateTransactionCommand, TransactionResponse>;
+public interface IUpdateTransactionCommandHandler : ICommandHandler<UpdateTransactionRequest, TransactionResponse>;

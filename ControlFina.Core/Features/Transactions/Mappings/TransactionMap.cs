@@ -11,10 +11,14 @@ internal class TransactionMap
         {
             Id = transaction.Id,
             TransacationDate = transaction.TransacationDate,
-            CategoryId = transaction.CategoryId,    
+            CategoryId = transaction.CategoryId,
+            Category = transaction.Category,
             Value = transaction.Value,
             CreatedAt = transaction.CreatedAt,
-            UpdatedAt = transaction.UpdatedAt
+            UpdatedAt = transaction.UpdatedAt,
+            Observation = transaction.Observation,
+            IsDebit = transaction.IsDebit,
+            FirstOfMonth = transaction.FirstOfMonth
         };
     }
 

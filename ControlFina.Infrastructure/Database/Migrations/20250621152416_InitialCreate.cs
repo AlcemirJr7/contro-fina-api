@@ -22,8 +22,8 @@ namespace ControlFina.Infrastructure.Database.Migrations
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     description = table.Column<string>(type: "varchar", maxLength: 200, nullable: false),
                     is_active = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true),
-                    created_at = table.Column<DateTime>(type: "timestamp", nullable: false),
-                    updated_at = table.Column<DateTime>(type: "timestamp", nullable: false)
+                    created_at = table.Column<DateTime>(type: "timestamptz", nullable: false),
+                    updated_at = table.Column<DateTime>(type: "timestamptz", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -36,11 +36,11 @@ namespace ControlFina.Infrastructure.Database.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    transacation_date = table.Column<DateTime>(type: "timestamp", nullable: false),
+                    transacation_date = table.Column<DateTime>(type: "date", nullable: false),
                     category_id = table.Column<Guid>(type: "uuid", nullable: false),
                     value = table.Column<decimal>(type: "numeric", nullable: false),
-                    created_at = table.Column<DateTime>(type: "timestamp", nullable: false),
-                    updated_at = table.Column<DateTime>(type: "timestamp", nullable: false)
+                    created_at = table.Column<DateTime>(type: "timestamptz", nullable: false),
+                    updated_at = table.Column<DateTime>(type: "timestamptz", nullable: false)
                 },
                 constraints: table =>
                 {

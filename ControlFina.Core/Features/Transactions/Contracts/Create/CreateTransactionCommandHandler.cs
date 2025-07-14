@@ -24,7 +24,7 @@ public sealed class CreateTransactionCommandHandler : ICreateTransactionCommandH
         if (category is null)
             return Result.Failure<TransactionResponse>(Error.NotFound($"Category with id [{command.CategoryId}] not found"));
         
-        Transaction transaction = new(command.TransacationDate, command.CategoryId, command.Value);
+        Transaction transaction = new(command.TransacationDate, command.CategoryId, command.Value, command.Observation, command.IsDebit);
 
         _command.Create(transaction);
 

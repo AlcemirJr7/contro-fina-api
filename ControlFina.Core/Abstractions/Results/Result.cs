@@ -1,6 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-
-namespace ControlFina.Core.Abstractions.Results;
+﻿namespace ControlFina.Core.Abstractions.Results;
 
 public class Result
 {
@@ -31,7 +29,7 @@ public class Result
     public static Result<TData> SuccessCreated<TData>(TData data) =>
         new(data, true, Error.None, CodeType.Created);
 
-    public static Result Failure(Error error) => new(false, error);
+    public static Result Failure(Error error) => new(false, error, error.Code);
 
     public static Result<TData> Failure<TData>(Error error) =>
         new(default, false, error, error.Code);
@@ -48,10 +46,7 @@ public class Result<TData> : Result
         Code = code;
     }
 
-    [NotNull]
-    public TData Data => IsSuccess
-        ? _data!
-        : throw new InvalidOperationException("The value of a failure result can't be accessed.");
+    public TData? Data => _data;
 
     public static implicit operator Result<TData>(TData? value) =>
         value is not null ? Success(value) : Failure<TData>(Error.NullValue);
@@ -59,4 +54,3 @@ public class Result<TData> : Result
     public static Result<TData> ValidationFailure(Error error) =>
         new(default, false, error, error.Code);
 }
-

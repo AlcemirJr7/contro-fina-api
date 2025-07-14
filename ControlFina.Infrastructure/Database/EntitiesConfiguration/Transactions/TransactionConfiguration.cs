@@ -1,4 +1,5 @@
-﻿using ControlFina.Core.Features.Transactions.Entities;
+﻿using ControlFina.Core.Abstractions;
+using ControlFina.Core.Features.Transactions.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -14,7 +15,7 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
 
         builder.Property(h => h.TransacationDate)
                .HasColumnName("transacation_date")
-               .HasColumnType("timestamp")
+               .HasColumnType("date")
                .IsRequired();
 
         builder.Property(h => h.CategoryId)
@@ -27,11 +28,29 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
 
         builder.Property(h => h.CreatedAt)
                .HasColumnName("created_at")
-               .HasColumnType("timestamp");
+               .HasColumnType("timestamptz")
+               .HasConversion(
+                   v => DateTimeBr.ToUtc(v),
+                   v => DateTimeBr.FromUtc(v))
+               .IsRequired();
 
         builder.Property(h => h.UpdatedAt)
                .HasColumnName("updated_at")
-               .HasColumnType("timestamp");
+               .HasColumnType("timestamptz")
+               .HasConversion(
+                   v => DateTimeBr.ToUtc(v),
+                   v => DateTimeBr.FromUtc(v));
+
+        builder.Property(h => h.Observation)
+               .HasColumnName("observation")
+               .HasMaxLength(TransactionDefinition.OBSERVATION_MAX_LENGTH);
+
+        builder.Property(h => h.IsDebit)
+               .HasColumnName("is_debit");
+
+        builder.Property(h => h.FirstOfMonth)
+               .HasColumnName("first_of_month")
+               .HasColumnType("date");
 
     }
 }

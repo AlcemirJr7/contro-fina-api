@@ -1,4 +1,6 @@
-﻿namespace ControlFina.Core.Features.Categories.Entities;
+﻿using ControlFina.Core.Abstractions;
+
+namespace ControlFina.Core.Features.Categories.Entities;
 
 public sealed class Category
 {
@@ -13,14 +15,14 @@ public sealed class Category
         Id = Guid.NewGuid();
         Description = description;
         IsActive = true;
-        CreatedAt = DateTime.Now;
-        UpdatedAt = DateTime.Now;
+        CreatedAt = DateTimeBr.Now;
+        UpdatedAt = DateTimeBr.Now;
     }
 
     public void Update(string description, bool isActive)
     {
         Description = description;
         IsActive = isActive;
-        UpdatedAt = DateTime.Now;
+        UpdatedAt = DateTimeBr.Now;
     }
 }

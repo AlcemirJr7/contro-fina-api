@@ -15,14 +15,14 @@ public sealed class UpdateTransactionCommandHandler : IUpdateTransactionCommandH
         _queryRepository = queryRepository ?? throw new ArgumentNullException(nameof(queryRepository));
     }
 
-    public async Task<Result<TransactionResponse>> Handle(UpdateTransactionCommand command, CancellationToken cancellationToken)
+    public async Task<Result<TransactionResponse>> Handle(UpdateTransactionRequest command, CancellationToken cancellationToken)
     {
         var transaction = await _queryRepository.GetByIdAsync(command.Id, cancellationToken);
 
         if (transaction is null)
-            return Result.Failure<TransactionResponse>(Error.NotFound($"Transaction with id [{command.Id}] not found"));
+            return Result.Failure<TransactionResponse>(Error.NotFound($"Transaction with id [{command.Id}] not found."));
 
-        transaction.Update(command.TransacationDate, command.CategoryId, command.Value);
+        transaction.Update(command.TransacationDate, command.CategoryId, command.Value, command.Observation, command.IsDebit);
 
         _commandRepository.Update(transaction);
 

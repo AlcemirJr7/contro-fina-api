@@ -7,6 +7,7 @@ using ControlFina.Core.Features.Transactions.Contracts.Create;
 using ControlFina.Core.Features.Transactions.Contracts.Delete;
 using ControlFina.Core.Features.Transactions.Contracts.GetAll;
 using ControlFina.Core.Features.Transactions.Contracts.GetById;
+using ControlFina.Core.Features.Transactions.Contracts.GetPaginated;
 using ControlFina.Core.Features.Transactions.Contracts.Update;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -46,6 +47,7 @@ public static class HandlerContainer
         // Queries
         services.AddScoped<IGetAllTransactionQueryHandler, GetAllTransactionQueryHandler>();
         services.AddScoped<IGetByIdTransactionQueryHandler, GetByIdTransactionQueryHandler>();
+        services.AddScoped<IGetPaginatedTransactionQueryHandler, GetPaginatedTransactionQueryHandler>();
 
         return services;
     }

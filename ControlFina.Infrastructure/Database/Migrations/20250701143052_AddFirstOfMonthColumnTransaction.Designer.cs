@@ -3,6 +3,7 @@ using System;
 using ControlFina.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ControlFina.Infrastructure.Database.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250701143052_AddFirstOfMonthColumnTransaction")]
+    partial class AddFirstOfMonthColumnTransaction
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,7 +33,7 @@ namespace ControlFina.Infrastructure.Database.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamptz")
+                        .HasColumnType("timestamp")
                         .HasColumnName("created_at");
 
                     b.Property<string>("Description")
@@ -46,7 +49,7 @@ namespace ControlFina.Infrastructure.Database.Migrations
                         .HasColumnName("is_active");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamptz")
+                        .HasColumnType("timestamp")
                         .HasColumnName("updated_at");
 
                     b.HasKey("Id");
@@ -65,7 +68,7 @@ namespace ControlFina.Infrastructure.Database.Migrations
                         .HasColumnName("category_id");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamptz")
+                        .HasColumnType("timestamp")
                         .HasColumnName("created_at");
 
                     b.Property<DateTime>("FirstOfMonth")
@@ -83,11 +86,11 @@ namespace ControlFina.Infrastructure.Database.Migrations
                         .HasColumnName("observation");
 
                     b.Property<DateTime>("TransacationDate")
-                        .HasColumnType("date")
+                        .HasColumnType("timestamp")
                         .HasColumnName("transacation_date");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamptz")
+                        .HasColumnType("timestamp")
                         .HasColumnName("updated_at");
 
                     b.Property<decimal>("Value")

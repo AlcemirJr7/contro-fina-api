@@ -7,6 +7,7 @@ namespace ControlFina.Core.Features.Transactions.Contracts.GetAll;
 public sealed class GetAllTransactionQueryHandler : IGetAllTransactionQueryHandler
 {
     private readonly ITransactionQueryRepository _query;
+
     public GetAllTransactionQueryHandler(ITransactionQueryRepository query)
     {
         _query = query;
@@ -14,7 +15,7 @@ public sealed class GetAllTransactionQueryHandler : IGetAllTransactionQueryHandl
 
     public async Task<Result> Handle(CancellationToken cancellationToken)
     {
-        var transactions = await _query.GetAllAsync(cancellationToken);
+        var transactions = await _query.GetAllWithCategoryAsync(cancellationToken);
 
         var response = TransactionMap.ToResponse(transactions);
 

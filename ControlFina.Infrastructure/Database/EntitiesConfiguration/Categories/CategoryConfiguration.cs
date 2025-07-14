@@ -1,4 +1,5 @@
-﻿using ControlFina.Core.Features.Categories.Entities;
+﻿using ControlFina.Core.Abstractions;
+using ControlFina.Core.Features.Categories.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -26,12 +27,17 @@ public class CategoryConfiguration : IEntityTypeConfiguration<Category>
 
         builder.Property(h => h.CreatedAt)
                .HasColumnName("created_at")
-               .HasColumnType("timestamp")
+               .HasColumnType("timestamptz")
+               .HasConversion(
+                   v => DateTimeBr.ToUtc(v),
+                   v => DateTimeBr.FromUtc(v))
                .IsRequired();
 
         builder.Property(h => h.UpdatedAt)
                .HasColumnName("updated_at")
-               .HasColumnType("timestamp")
-               .IsRequired();
+               .HasColumnType("timestamptz")
+               .HasConversion(
+                   v => DateTimeBr.ToUtc(v),
+                   v => DateTimeBr.FromUtc(v));
     }
 }
