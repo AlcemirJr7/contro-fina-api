@@ -13,7 +13,7 @@ namespace ControlFina.Api.Controllers.Category;
 
 [ApiVersion("1.0")]
 [Route("api/v{version:apiVersion}/category")]
-public class CategotyController : AbstractController
+public class CategoryController : AbstractController
 {
     [HttpPost("create")]
     [ProducesResponseType(typeof(Result<CategoryResponse>), StatusCodes.Status201Created)]
