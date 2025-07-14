@@ -1,0 +1,5 @@
+﻿using ControlFina.Core.Abstractions.Handlers;
+
+namespace ControlFina.Core.Features.TransactionAnalytics.Contracts.GetRevenueLastAndCurrentMonth;
+
+public interface IGetRevenueLastAndCurrentMonthQueryHandler : IQueryHandler<IEnumerable<GetRevenueLastAndCurrentMonthQueryResponse>>;

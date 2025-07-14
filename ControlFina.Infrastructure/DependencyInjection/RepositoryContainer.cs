@@ -1,6 +1,8 @@
 ﻿using ControlFina.Core.Features.Categories.Repositories;
+using ControlFina.Core.Features.TransactionAnalytics.Repositories;
 using ControlFina.Core.Features.Transactions.Repositories;
 using ControlFina.Infrastructure.Features.Categories.Repositories;
+using ControlFina.Infrastructure.Features.TransactionAnalytics.Repositories;
 using ControlFina.Infrastructure.Features.Transactions.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -11,7 +13,8 @@ public static class RepositoryContainer
     public static IServiceCollection AddRepository(this IServiceCollection services)
     {
         services.AddCategory()
-                .AddTransaction();
+                .AddTransaction()
+                .AddTransactionAnalytics();
 
         return services;
     }
@@ -28,6 +31,12 @@ public static class RepositoryContainer
     {
         services.AddScoped<ITransactionCommandRepository, TransactionCommandRepository>();
         services.AddScoped<ITransactionQueryRepository, TransactionQueryRepository>();
+
+        return services;
+    }
+    private static IServiceCollection AddTransactionAnalytics(this IServiceCollection services)
+    {
+        services.AddScoped<ITransactionAnalyticsQueryRepository, TransactionAnalyticsQueryRepository>();
 
         return services;
     }
