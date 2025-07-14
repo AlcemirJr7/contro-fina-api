@@ -13,6 +13,8 @@ builder.Services.AddSwaggerConfiguration();
 
 builder.Services.AddOpenApi();
 
+builder.Services.AddCors();
+
 builder.Services
     .AddDatabase(builder.Configuration)
     .AddRepository()
@@ -27,6 +29,13 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
     app.ApplyMigrations();
 }
+
+app.UseCors(option => option
+    .SetIsOriginAllowed(_ => true)
+    .AllowAnyHeader()
+    .WithMethods("POST", "PUT", "DELETE", "GET")
+    .AllowCredentials()
+);
 
 app.UseHttpsRedirection();
 
